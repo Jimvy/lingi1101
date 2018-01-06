@@ -34,7 +34,7 @@
 % 			&\\
 % 			On peut donc écrire & \\
 % 			%impossible de trouver l'équivalence logique en symbole
-% 			$p \Lleftarrow \Rrightarrow q$ & $p$ est conséquence logique de $q$.\\ 
+% 			$p \LRarrow q$ & $p$ est conséquence logique de $q$.\\
 % 			\end{tabular}
 % 			\end{center}
 % 			L'équivalence logique n'est pas non plus une proposition logique.\\
@@ -100,8 +100,8 @@ L'inconvénient de cette méthode de preuve est qu'elle devient rapidement très
 \section{Preuve transformationnelle} \label{transfo_propositionelle}
 
 Une preuve transformationnelle est une séquence de transformations
-$p_1 \Lleftarrow \Rrightarrow p_2 \Lleftarrow \Rrightarrow \cdots \Lleftarrow \Rrightarrow p_n$,
-dans laquelle on a toujours $p_i \Lleftarrow \Rrightarrow p_{i+1}$
+$p_1 \LRarrow p_2 \LRarrow \cdots \LRarrow p_n$,
+dans laquelle on a toujours $p_i \LRarrow p_{i+1}$
 (équivalence logique entre éléments adjacents dans la séquence).
 Une preuve transformationnelle est aussi un objet mathématique en métalangage.
 Pour faciliter la création d'une preuve transformationnelle,
@@ -109,41 +109,41 @@ on utilise des "Lois", c'est-à-dire des équivalences connues.
 			\begin{center}
 			\begin{tabular}{|ll|}
 			\hline
-			$p \Lleftarrow \Rrightarrow p \lor p$ & Idempotence\\
-			$p \lor q \Lleftarrow \Rrightarrow q \lor p$ & Commutativité\\
-			$(p \lor q) \lor r \Lleftarrow \Rrightarrow p \lor (q \lor r)$ & Associativité\\
-			$ \lnot \lnot p \Lleftarrow \Rrightarrow p$ & Double Négation\\
-			$p \Rightarrow q \Lleftarrow \Rrightarrow \lnot p \lor q$ & Implication\\
-			$\lnot (p \land q) \Lleftarrow \Rrightarrow \lnot p \lor \lnot q$ & $1^{ere}$ loi de De Morgan\\
-			$p \Leftrightarrow q \Lleftarrow \Rrightarrow (p \Rightarrow q) \land (q \Rightarrow p)$ & Équivalence\\
+			$p \LRarrow p \lor p$ & Idempotence\\
+			$p \lor q \LRarrow q \lor p$ & Commutativité\\
+			$(p \lor q) \lor r \LRarrow p \lor (q \lor r)$ & Associativité\\
+			$ \lnot \lnot p \LRarrow p$ & Double Négation\\
+			$p \Rightarrow q \LRarrow \lnot p \lor q$ & Implication\\
+			$\lnot (p \land q) \LRarrow \lnot p \lor \lnot q$ & $1^{ere}$ loi de De Morgan\\
+			$p \Leftrightarrow q \LRarrow (p \Rightarrow q) \land (q \Rightarrow p)$ & Équivalence\\
 			\hline
 			\end{tabular}
 			\end{center}
 On ajoute deux règles supplémentaires : la transitivité et la substitution.
 			\subsection*{Transitivité de l'équivalence}
-			\indent Si $p \Lleftarrow \Rrightarrow q$ et $q \Lleftarrow \Rrightarrow r$, alors $p \Lleftarrow \Rrightarrow r$.
+			\indent Si $p \LRarrow q$ et $q \LRarrow r$, alors $p \LRarrow r$.
 			\subsection*{Substitution}
 			Il est autorisé de remplacer une formule par une formule équivalente à l’intérieur d’une autre formule. Autrement dit : \\
 			\indent Soit p,q,r des formules propositionnelles.\\
-			\indent Si $p \Leftrightarrow q$ et $r(p)$, alors $r(p) \Lleftarrow \Rrightarrow r(q)$.\\
-			On peut remplacer $p$ par $q$ car elles sont équivalentes. 
-			
-			
+			\indent Si $p \Leftrightarrow q$ et $r(p)$, alors $r(p) \LRarrow r(q)$.\\
+			On peut remplacer $p$ par $q$ car elles sont équivalentes.
+
+
 			\subsection*{Exemple}
-			On veut prouver : $p \land (q \land r) \Lleftarrow \Rrightarrow (p \land q) \land r$
+			On veut prouver : $p \land (q \land r) \LRarrow (p \land q) \land r$
 			\begin{center}
 			\begin{tabular}{ll}
-			
-			$p \land (q \land r)$ & $\Lleftarrow \Rrightarrow p \land \lnot \lnot (q \land r)$\\
-			& $\Lleftarrow \Rrightarrow p \land \lnot (\lnot q \lor \lnot r)$\\
-			& $\Lleftarrow \Rrightarrow \lnot \lnot (p \land \lnot (\lnot q \lor \lnot r))$\\
-			& $\Lleftarrow \Rrightarrow \lnot (\lnot p \lor \lnot \lnot (\lnot q \lor \lnot r))$\\
-			& $\Lleftarrow \Rrightarrow \lnot (\lnot p \lor (\lnot q \lor \lnot r))$\\
-			& $\Lleftarrow \Rrightarrow \lnot ((\lnot p \lor \lnot q) \lor \lnot r)$\\
+
+			$p \land (q \land r)$ & $\LRarrow p \land \lnot \lnot (q \land r)$\\
+			& $\LRarrow p \land \lnot (\lnot q \lor \lnot r)$\\
+			& $\LRarrow \lnot \lnot (p \land \lnot (\lnot q \lor \lnot r))$\\
+			& $\LRarrow \lnot (\lnot p \lor \lnot \lnot (\lnot q \lor \lnot r))$\\
+			& $\LRarrow \lnot (\lnot p \lor (\lnot q \lor \lnot r))$\\
+			& $\LRarrow \lnot ((\lnot p \lor \lnot q) \lor \lnot r)$\\
 			&$\vdots$\\
 			& effectuer les mêmes lois dans le sens contraire \\
 			&$\vdots$\\
-			& $\Lleftarrow \Rrightarrow (p \land q) \land r$\\
+			& $\LRarrow (p \land q) \land r$\\
 			\end{tabular}
 			\end{center}
 Le problème de cette méthode de preuve est qu'elle requiert de l'intuition, de la créativité. Elle n'est donc pas forcément plus efficace que les tables de vérité, surtout si "l'astuce" est difficile à trouver.
@@ -161,14 +161,14 @@ une preuve déductive est beaucoup plus expressive qu'une preuve transformationn
 \subsection{Equivalences logiques}
 			\begin{center}
 			\begin{tabular}{ll}
-			$p \Lleftarrow \Rrightarrow p \lor p$ & Idempotence de $\lor$\\
-			$p \lor q \Lleftarrow \Rrightarrow q \lor p$ & Commutativité de $\lor$\\
-			$(p \lor q) \lor r \Lleftarrow \Rrightarrow p \lor (q \lor r)$ & Associativité de $\lor$\\
-			$ \lnot \lnot p \Lleftarrow \Rrightarrow p$ & Double Négation\\
-			$p \Rightarrow q \Lleftarrow \Rrightarrow \lnot p \lor q$ & Implication\\
-			$\lnot (p \land q) \Lleftarrow \Rrightarrow \lnot p \lor \lnot q$ & $1^{ere}$ loi de De Morgan\\
-			$\lnot (p \lor q) \Lleftarrow \Rrightarrow \lnot p \land \lnot q$ & $2^{eme}$ loi de De Morgan\\
-			$(p \land q) \lor r \Lleftarrow \Rrightarrow (p \lor r) \land (q \lor r)$ & Distributivité de $\lor$\\
+			$p \LRarrow p \lor p$ & Idempotence de $\lor$\\
+			$p \lor q \LRarrow q \lor p$ & Commutativité de $\lor$\\
+			$(p \lor q) \lor r \LRarrow p \lor (q \lor r)$ & Associativité de $\lor$\\
+			$ \lnot \lnot p \LRarrow p$ & Double Négation\\
+			$p \Rightarrow q \LRarrow \lnot p \lor q$ & Implication\\
+			$\lnot (p \land q) \LRarrow \lnot p \lor \lnot q$ & $1^{ere}$ loi de De Morgan\\
+			$\lnot (p \lor q) \LRarrow \lnot p \land \lnot q$ & $2^{eme}$ loi de De Morgan\\
+			$(p \land q) \lor r \LRarrow (p \lor r) \land (q \lor r)$ & Distributivité de $\lor$\\
 			\end{tabular}
 			\end{center}
 À ces équivalence nous ajoutons aussi l'idempotence, la commutativité, l'associativité et
