@@ -406,7 +406,7 @@ $
 \end{center}
 
 Mais il est vrai que les preuves en logique des prédicats sont parfois délicates à cause des variables:
-occurrences libres (par quantifiées), occurrences liées par $\forall$ et occurrences liées par $\exists$.
+occurrences libres (pas quantifiées), occurrences liées par $\forall$ et occurrences liées par $\exists$.
 Dans ce chapitre nous allons surtout étudier comment manipuler les variables et les quantificateurs
 correctement dans une preuve.
 
@@ -505,15 +505,15 @@ Une {\em occurrence libre} d'une variable est une occurrence qui n'est pas dans 
 Il faut faire attention aux variables dans $t$, pour éviter qu'une variable dans $t$ ne rentre dans la portée d'un quantificateur,
 ce qui s'appelle la {\em capture de variable}.
 Pour éviter la capture, il faut faire un {\em renommage} de variable, c'est-à-dire, changer les noms des variables dans $p$.
-Voici un exemple de $p[x/y]$ où $p = P(x) \rightarrow \forall y \cdot (P(x) \wedge R(y))$ :
+Voici un exemple de $p[x/y]$ où $p = P(x) \Rightarrow \forall y \cdot (P(x) \wedge R(y))$ :
 \begin{center}
 \begin{tabular}{|l |l |>{\raggedright}m{6cm}|}
 \hline
-1. &$P(x) \rightarrow \forall y \cdot (P(x) \wedge R(y))$&$[x/y]$ veut dire qu'on va remplacer toutes les occurrences libres de $x$ par $y$.\tabularnewline
+1. &$P(x) \Rightarrow \forall y \cdot (P(x) \wedge R(y))$&$[x/y]$ veut dire qu'on va remplacer toutes les occurrences libres de $x$ par $y$.\tabularnewline
 \hline
-2. &$P(y) \rightarrow \forall y \cdot (P(y) \wedge R(y))$&En remplaçant $x$ par $y$, on a changé le sens de la formule, car avant, $x$ n'était pas dans la portée du quantificateur alors que maintenant il l'est. Ce changement de sens s'appelle une \textit{capture de variable}, car la variable $y$ est capturée par le quantificateur. Pour résoudre ce problème, on va effectuer un \textit{renommage}.\tabularnewline
+2. &$P(y) \Rightarrow \forall y \cdot (P(y) \wedge R(y))$&En remplaçant $x$ par $y$, on a changé le sens de la formule, car avant, $x$ n'était pas dans la portée du quantificateur alors que maintenant il l'est. Ce changement de sens s'appelle une \textit{capture de variable}, car la variable $y$ est capturée par le quantificateur. Pour résoudre ce problème, on va effectuer un \textit{renommage}.\tabularnewline
 \hline
-3. &$P(y) \rightarrow \forall z \cdot (P(y) \wedge R(z))$&Résultat après renommage (pour éviter la capture de variable).
+3. &$P(y) \Rightarrow \forall z \cdot (P(y) \wedge R(z))$&Résultat après renommage (pour éviter la capture de variable).
 On a changé le $y$ en $z$ (renommage) et remplacé le $x$ par $y$ (substitution). \tabularnewline
 \hline
 \end{tabular}
@@ -525,7 +525,7 @@ Nous donnons plusieurs possibilités de substitution correctes:
 \item $p[x/y] = \exists z. P(y,z)$ (attention: $y$ a été renommée)
 \item $p[x/f(x)] = \exists y. P(f(x),y)$
 \item $p[x/c] = \exists y. P(c,y)$ ($c$ est une constante)
-\item $p[x/z] = \exists y. P(z,t)$
+\item $p[x/z] = \exists y. P(z,y)$
 \end{itemize}
 
 % Ancienne partie 8
@@ -577,7 +577,7 @@ y = variable qui existe d\'ej\`a dans la preuve, elle a déjà une valeur $\line
 \item $\exists$y $\bullet$ chef(y) $\wedge$ voleur(y) $\>$ Introduction de $\exists$ \textcolor{red}{(FAUSSE)}
 \end{enumerate}
 
-\underline{Exemple 2 :}\\
+\underline{Exemple 1 corrigé :}\\
 \begin{enumerate}
 \item $\exists$x $\bullet$ chef(x) $\>$ $\>$ $\>$ $\>$ $\>$ $\>$ $\>$ $\>$ $\>$ $\>$ $\>$Pr\'emisse
 \item $\exists$x $\bullet$ voleur (x) $\>$ $\>$ $\>$ $\>$ $\>$ $\>$ $\>$ $\>$ $\>$Pr\'emisse
@@ -753,7 +753,7 @@ vrai dans tous les modèles, l'algorithme peut tourner en rond et ne jamais se t
 Le problème est donc que quand l'algorithme prend trop de temps à trouver une preuve,
 à un certain moment on doit l'arrêter et l'on n'est jamais certain du résultat.
 On ne peut jamais être sûr que l'algorithme n'aurait pas trouvé une preuve si on l'avait laissé tourner plus longtemps.
-Il est donc semi-décidable, car ses résultats ne sont totalement fiables que dans le cas ou une preuve est trouvée.
+Il est donc semi-décidable, car ses résultats ne sont totalement fiables que dans le cas où une preuve est trouvée.
 \end{itemize}
 
 \section{Concepts de base}
@@ -844,12 +844,12 @@ Etapes de la transformation en formule logiquement équivalente:
 \end{enumerate}
 \subsection{Exemple d'une transformation en forme prénexe}
 \begin{enumerate}
-\item $\forall x  [p(x) \land \neg (\exists y) \forall x ( \neg q(x,y)) = > \forall z \exists v \bullet p(a,x,y,v))]$\\ \textit{Expression de base}
-\item $\forall x [p(x) \land \neg(\exists y) (\forall x) ($\colorbox{lightgray}{$\neg$} $\neg q(x,y) $\colorbox{lightgray}{$\lor$} $\forall z \exists v \bullet r(a,x,y,v)]$\\\textit{Suppression des $\implies{}$} 
-\item $\forall x [p(x) \land \neg(\exists y) (\forall $\colorbox{lightgray}{$u$}$)(\neg\neg q($\colorbox{lightgray}{$u$}$,y) \lor $\colorbox{lightgray}{$\cancel{\forall z}$}$\exists v \bullet r(a,$\colorbox{lightgray}{$u$}$,y,v)]$\\\textit{Renommage des variables et suppression des quantificateurs inutiles}
-\item $\forall x [p(x) \land$ \colorbox{lightgray}{$\forall y \neg$} $ (\forall u)($ \colorbox{lightgray}{$\cancel{\neg \neg}$} $q(u,y) \lor \exists v \bullet r(a,u,y,v)] $\\$\neg\exists y\ devient\  \forall \ y\ \neg \ et\ simplification\ des\ \neg$
-\item $\forall x [p(x) \land \forall y $ \colorbox{lightgray}{$\exists u \neg$}$(q(u,y) \lor \exists v \bullet r(a,u,y,v)] $\\$\neg\forall u\ devient\  \exists \ u\ \neg$
-\item $\forall x [p(x) \land \forall y \exists u $\colorbox{lightgray}{$(\neg q(u,y) \land \neg (\exists v) \bullet r(a,u,y,v))]$}\\ \textit{Distribution des $\neg$}\textit{(De Morgan)}
+\item $\forall x  [p(x) \land \neg \exists y \forall x ( \neg q(x,y) \Rightarrow \forall z \exists v \bullet p(a,x,y,v))]$\\ \textit{Expression de base}
+\item $\forall x [p(x) \land \neg \exists y \forall x ($\colorbox{lightgray}{$\neg$} $\neg q(x,y) $\colorbox{lightgray}{$\lor$} $\forall z \exists v \bullet r(a,x,y,v))]$\\\textit{Suppression des $\implies{}$}
+\item $\forall x [p(x) \land \neg \exists y \forall $\colorbox{lightgray}{$u$}$(\neg\neg q($\colorbox{lightgray}{$u$}$,y) \lor $\colorbox{lightgray}{$\cancel{\forall z}$}$\exists v \bullet r(a,$\colorbox{lightgray}{$u$}$,y,v))]$\\\textit{Renommage des variables et suppression des quantificateurs inutiles}
+\item $\forall x [p(x) \land$ \colorbox{lightgray}{$\forall y \neg$} $ \forall u($ \colorbox{lightgray}{$\cancel{\neg \neg}$} $q(u,y) \lor \exists v \bullet r(a,u,y,v))] $\\$\neg\exists y\ devient\  \forall \ y\ \neg \ et\ simplification\ des\ \neg$
+\item $\forall x [p(x) \land \forall y $ \colorbox{lightgray}{$\exists u \neg$}$(q(u,y) \lor \exists v \bullet r(a,u,y,v))] $\\$\neg\forall u\ devient\  \exists \ u\ \neg$
+\item $\forall x [p(x) \land \forall y \exists u $\colorbox{lightgray}{$(\neg q(u,y) \land \neg (\exists v \bullet r(a,u,y,v)))]$}\\ \textit{Distribution des $\neg$}\textit{(De Morgan)}
 \item $\forall x [p(x) \land \forall y \exists u (\neg q(u,y) \land $\colorbox{lightgray}{$(\forall v) \bullet \neg$}$ r(a,u,y,v))]$\\$\neg\exists y\ devient\  \forall \ y\ \neg$
 \item $\forall x$\colorbox{lightgray}{$ \forall y \exists u \forall v  \bullet$}$ [p(x) \land (\neg q(u,y) \land  \neg r(a,u,y,v))]$\\\textit{Extraction des quantificateurs.}
 \end{enumerate}
@@ -873,7 +873,7 @@ On peut donc supposer qu'une fonction $g(x,y)$ fournit cet élément de façon �
 $(\forall x)(\forall y)(\forall v) \big[ P(x) \wedge \neg Q(\textbf{g(x,y)},y) \wedge \neg R(a,\textbf{g(x,y)},y,v) \big]$
 \smallskip
 
-Après la transformation, l'existence des modèles est préservée.
+Après la transformation, l'existence des modèles est préservée, mais pas l'ensemble des modèles lui-même.
 
 \subsection{Règle}
 
@@ -1013,7 +1013,7 @@ et essayer de déduire une contradiction ($\mathrm{false}$).
 Les déductions utilisent la règle de résolution, qui est bien adaptée
 à la forme normale conjonctive.
 
-L'algorithme n'est pas garantie de terminer.
+L'algorithme n'est pas garanti de terminer.
 S'il termine avec une contradiction, cela démontre $\mathrm{Th}$.
 S'il termine sans contradiction, cela démontre que l'on ne peut pas prouver $\mathrm{Th}$.
 S'il ne termine pas, on est dans le cas de la semi-décidabilité.
@@ -1085,10 +1085,10 @@ Il y a une inconsistence donc le candidat théorème est prouvé.
 
 \subsubsection{Non-déterminisme}
 
-Cet algorithme a plusieures sources de non-déterminisme, c'est-à-dire
+Cet algorithme a plusieurs sources de non-déterminisme, c'est-à-dire
 le choix des clauses et le choix des littéraux dans les clauses.
 Ces choix sont faits à chaque itération.
-Avec un mauvais choix, l'algorithm peut ne pas terminer ou
+Avec un mauvais choix, l'algorithme peut ne pas terminer ou
 faire des déductions inutiles.
 Par exemple, si on fait un autre choix lors de la première itération:
 
@@ -1181,12 +1181,12 @@ Nous n'abordons pas les logiques d'ordres supérieurs dans ce cours.
 Le concept de base est la {\em théorie du premier ordre}.
 Une théorie du premier ordre est un ensemble $B$ de formules
 qui représente les axiomes et les règles d'inférence d'une structure mathématique.
-Nous allons nous restreindre au modèles: les interprétations de $B$
+Nous allons nous restreindre aux modèles: les interprétations de $B$
 où les axiomes et les règles sont valides.
 
 \subsection{Définition d'une théorie}
 
-Une théorie contient les partie suivantes:
+Une théorie contient les parties suivantes:
 \begin{itemize}
 \item Un sous-langage de la logique du premier ordre:
 \begin{itemize}
