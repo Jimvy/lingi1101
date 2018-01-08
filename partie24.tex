@@ -161,13 +161,13 @@ Et la condition $\sum Pr(p) = 1$ est toujours vérifiée.
 
 	Ancienne règle de mise à jour :
 	\begin{align*}
-	Pr(p) =  \sum_ {p'}\frac{Pr(p')}{n(p')}
+	Pr_s(p) =  \sum_ {p'}\frac{Pr(p')}{n(p')}
 	\end{align*}
 	
  	Nouvelle règle de mise à jour : \\
 	\begin{align*}
-         Pr(p) = S*Pr(p) + (1-S)  \times \frac{1}{n} \\
-	 \text{Où S est un paramètre : $ 0 \le S \le 1 $} 
+         Pr(p) = S*Pr_s(p) + (1-S)  \times \frac{1}{n} \\
+	 \text{Où S est un paramètre : $ 0 \le S \le 1 $} % FIXME c'est extrêmement peu clair
 	\end{align*}
         
 \subsection*{ Une autre manière de voir l'algorithme:}

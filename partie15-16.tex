@@ -28,9 +28,9 @@ ils sont performants et robustes, avec une multitude d'outils pratiques.
 
 \section{La voie vers la programmation logique}
 
-Nous allons d'aord suivre le raisonnement qui a mené à l'invention de Prolog
+Nous allons d'abord suivre le raisonnement qui a mené à l'invention de Prolog
 et nous allons montrer les bases théoriques de son exécution.
-Principalement, il y a un {\em compris entre expressivité et efficacité}:
+Principalement, il y a un {\em compromis entre expressivité et efficacité}:
 un langage trop expressif devient lent.
 Si le langage permettrait de résoudre la logique des prédicats complètement,
 dans certains cas l'algorithme d'exécution ne pourra rien déduire (parce qu'il est semi-décidable).
@@ -58,7 +58,7 @@ Tout programme pratique calcule des résultats et ne dit pas simplement que le r
 Notre algorithme de preuve a les propriétés suivantes:
 \begin{itemize}
 \item Il est adéquat (consistent): si $p \vdash q$ alors $p \models q$.
-C'est-à-dire, si l'algorithme peut prouver la reqûete $q$ à partie du programme $p$,
+C'est-à-dire, si l'algorithme peut prouver la requête $q$ à partie du programme $p$,
 alors $q$ est effectivement vrai quand $p$ est vrai.
 \item Il est complet: si $p \models q$ alors $p \vdash q$.
 C'est-à-dire, si $q$ est vrai quand $p$ est vrai, alors l'algorithme peut trouver une preuve.
@@ -78,7 +78,7 @@ Typiquement, on ne permettra dans une clause $C_i$ qu'un littéral sans négatio
 	$$C_i = (\forall X_{1}) ... (\forall X_{n}) A_{1} \wedge A_{2} \wedge ... \wedge A_{n} \Rightarrow A$$
 En forme normale cela donne:
 	$$C_{i} = \neg A_{1} \vee \neg A_{2} \vee ... \vee \neg A_{n} \vee A$$
-Pour prouver $A$, il faut prouver $A_{1}$ et $A_{2}$ et ... et $A_{n}$).
+Pour prouver $A$, il faut prouver $A_{1}$ et $A_{2}$ et ... et $A_{n}$.
 Le programme tout entier est donc une conjonction de clauses $C_i$:
 	$$C_{1} \wedge C_{2} \wedge ... \wedge C_{k}$$
 \item Permettre au programmeur de donner des heuristiques (des ``indices'') pour aider le prouveur.
@@ -98,23 +98,23 @@ Le langage Prolog utilise ces deux techniques pour obtenir un langage efficace.
 
 Notre algorithme de preuve construit de nouvelles clauses à partir des anciennes.
 La résolution utilise l'unification, ce qui instantie les variables.
-Pour obtenir un résultat final d'une reqûete, il suffit de garder la reqûete
+Pour obtenir un résultat final d'une requête, il suffit de garder la reqûete
 pendant le calcul et de l'instantier avec les mêmes substitutions utilisées
 par la résolution.
-À la fin du calcul, les variables de la reqûete contiendront alors le résultat.
+À la fin du calcul, les variables de la requête contiendront alors le résultat.
 
 \subsection{Bref historique}
 
 \begin{enumerate}
 	\item 1965 : 	La règle de résolution est inventée par Alan Robinson.
 On commence à voir comment la logique peut devenir la base d'un langage de programmation.
-	\item 1972 :	Invention du langage Prolog et implémentation de la première interprète
+	\item 1972 :	Invention du langage Prolog et implémentation du premier interpréteur
 par Alain Colmerauer, Robert Kowalski et Philippe Roussel. 
 On démontre que Prolog est un langage utile avec lequel on peut écrire des vrais programmes
 avec les axiomes de logique.
 Ils inventent le nom Prolog qui vient de {\bf Pro}grammation {\bf Log}ique.
         \item 1977 :    Premier compilateur Prolog par David H. D. Warren.
-Un énorme pas en avant, on démontre qu'une implémentation de Prolog peut être compétitif
+Un énorme pas en avant, on démontre qu'une implémentation de Prolog peut être compétitive
 avec les implémentations des autres langages symboliques comme le Lisp.
         \item 1990 :    Premier compilateur Prolog compétitif avec C par Peter Van Roy et Andrew Taylor.
 On démontre qu'il n'y a rien dans le langage Prolog qui empêche une efficacité complète.
@@ -169,7 +169,7 @@ Cette syntaxe représente la forme normale suivante:
 \mathrm{pere}(\mathrm{haram},\mathrm{lot})
 \end{array}
 \end{equation}
-En regardant ce programme, il est claire qu'il y a une correspondance entre Prolog et les bases de données relationnelles.
+En regardant ce programme, il est clair qu'il y a une correspondance entre Prolog et les bases de données relationnelles.
 Un programme Prolog peut être vu comme une base de données relationnelle augmentée avec la déduction.
 Le modèle relationnel a été inventé à peu près au même moment que Prolog par E. F. Codd.
 Par la suite
@@ -239,7 +239,7 @@ Si on le souhaite, on peut faire un retour en arrière pour que l'algorithm calc
 \subsection{Gestion des choix}
 
 Il est important de comprendre comment cet algorithme gère les choix des clauses.
-L'algorithm fait parfois du retour en arrière (qui s'appelle {\em backtrack} en anglais) pour changer un choix.
+L'algorithme fait parfois du retour en arrière (qui s'appelle {\em backtrack} en anglais) pour changer un choix.
 Chaque fois que l'on choisit une clause à unifier avec le début de la résolvante,
 cela marque un endroit où l'on peut faire un retour en arrière. 
 Pour faire le retour en arrière,
@@ -274,7 +274,7 @@ C'est une propriété très puissante de la programmation logique qui n'existe p
 
 \section{Exemples de programmes Prolog}
 
-Maintenant que nous avons vu l'algorithm d'exécution de Prolog,
+Maintenant que nous avons vu l'algorithme d'exécution de Prolog,
 regardons quelques programmes pour voir comment on peut programmer en Prolog.
 L'idée de base est qu'un programme est un ensemble d'axiomes qui énoncent des propriétés vraies
 des algorithmes que l'on veut programmer, tout en permettant l'exécution de procéder de façon efficace.
@@ -309,7 +309,7 @@ récursif terminal.  Comme pour la programmation fonctionnelle, il est avantageu
 en programmation logique
 d'être récursif terminal, parce que l'exécution dépend aussi d'une pile
 et la taille de la pile n'augmentera pas pendant l'exécution.
-Ceci ne se voit pas avec une interprète Prolog, comme notre algorithme d'exécution de Prolog, mais devient important pour
+Ceci ne se voit pas avec un interpréteur Prolog, comme notre algorithme d'exécution de Prolog, mais devient important pour
 un compilateur Prolog.
 Il est tout à fait possible d'écrire une autre définition de factorielle en Prolog qui est récursive terminale
 et qui garde la sémantique logique.

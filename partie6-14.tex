@@ -824,7 +824,7 @@ En résumant, on peut écire la règle de résolution de façon plus générale 
 $$\frac{L_1 \lor C_1, \neg L_2 \lor C_2}{(C_1 \lor C_2)\sigma}$$
 Pour faire l'inférence
 on choisit le $\sigma$ le plus général possible, ce que nous appellons
-l'{\em unificateur le plus général} (``{\em most general unifier}'').
+l'{\em unificateur le plus général (upg)} (``{\em most general unifier (mgu)}'').
 On peut démontrer qu'un unificateur le plus général existe toujours.
 C'est cette règle d'inférence que nous allons utiliser dans l'algorithme de preuve.
 
@@ -1350,7 +1350,7 @@ $$ Ax \equiv (\forall x) \neg P(x,x) $$
 La nouvelle théorie ainsi étendue que nous noterons \bsc{fam*} possède un axiome de plus : Ax. Cette théorie \bsc{fam*}
 est {\em consistante}, c'est-à-dire qu'il existe au moins un modèle qui valide cette théorie.
 Pour s'en convaincre, il suffit de considérer la première interprétation de la théorie \bsc{fam} de la section précédente,
-qui utilise les liens familiaux: personne est parent de lui-même.\\
+qui utilise les liens familiaux: personne n'est parent de lui-même.\\
 
 En revanche, si on considère la deuxième interprétation (deuxième modèle, noté $J$) de \bsc{fam}
 qui associe les symboles $p$ et $m$ aux fonctions mathématiques $p_J : \mathbb{N} \rightarrow \mathbb{N} : d \rightarrow 2d$ et $m_J : \mathbb{N} \rightarrow \mathbb{N} : d \rightarrow 3d$, on observe une contradiction.
@@ -1493,7 +1493,7 @@ Il existe différents symboles pour représenter l'égalité :
 Nous allons utiliser ``$==$'' dans la suite de ce cours pour représenter l'égalité.
 
 La théorie de l'égalité est souvent {\em ajoutée} à d'autres axiomes pour être utile en pratique.
-Dans cette section on donne que les axiomes d'égalité.  Dans la suite nous allons voir comment
+Dans cette section on ne donne que les axiomes d'égalité.  Dans la suite nous allons voir comment
 ajouter l'égalité à d'autres théories.
 
 \subsection{Axiomes} 
@@ -1608,7 +1608,7 @@ Cette interprétation va satisfaire tous les entiers.
 \item \underline{$I_{2}$} : $D_{I_{2}} =  P(E)$ ensemble des sous-ensembles de E\\
 $ val_{I_{2}}(==) = '=' :$ égalité d'ensemble \\
 $ val_{I_{2}}(\leq) = '\subseteq' :$ inclusion d'ensemble
-\item \underline{$I_{3}$} : $D_{I_{3}} = ALPH^{2} = {(l_{1},l_{2}),..}$ doublons de lettres de l'alphabet\\
+\item \underline{$I_{3}$} : $D_{I_{3}} = ALPH^{2} = {(l_{1},l_{2}),..}$ paires de lettres de l'alphabet\\
 $ val_{I_{3}}(==) = $ égalité des paires \\
 $ val_{I_{3}}(\leq) =$ suivant ordre lexicographique\\
 Exemple : $(l_{i},l_{j}) \leq (l_{p},l_{q})$ si $ l_{i} < l_{p}$ ou $ l_{i} = l_{p}$ et $ l_{j} < l_{q}$ ou $ l_{j} = l_{q}$
